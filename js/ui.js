@@ -214,6 +214,7 @@ export function startApp() {
     byId('statusBanner').textContent = msg;
     byId('statusBanner').hidden = false;
   });
+  state.recipes = loadRecipes();
   wireEvents();
   renderGrid();
   showView('home');
