@@ -1,0 +1,101 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Recipe Manager</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="./styles.css" rel="stylesheet">
+</head>
+<body>
+  <header class="topbar">
+    <h1>Recipe Manager</h1>
+    <div class="controls">
+      <input id="searchInput" type="search" placeholder="Search by title">
+      <select id="difficultyFilter">
+        <option value="" selected>Difficulty level</option>
+        <option value="All">All</option>
+        <option value="Easy">Easy</option>
+        <option value="Medium">Medium</option>
+        <option value="Hard">Hard</option>
+      </select>
+      <input id="maxPrepInput" type="number" min="0" placeholder="Max prep (min)">
+      <button id="addBtn">Add Recipe</button>
+    </div>
+  </header>
+
+  <div id="statusBanner" class="banner" hidden></div>
+
+  <main>
+    <section id="homeView" class="view">
+      <div id="recipesGrid" class="grid"></div>
+      <div id="emptyState" class="empty" hidden>No recipes found</div>
+    </section>
+
+    <section id="detailView" class="view" hidden>
+      <button class="link" data-action="back">← Back</button>
+      <div id="detailCard"></div>
+    </section>
+
+    <section id="formView" class="view" hidden>
+      <button class="link" data-action="back">← Back</button>
+      <form id="recipeForm" novalidate>
+        <input type="hidden" id="recipeId">
+        <div class="form-row">
+          <label for="title">Title</label>
+          <input id="title" type="text" required>
+          <div class="error" data-error-for="title"></div>
+        </div>
+        <div class="form-row">
+          <label for="description">Description</label>
+          <textarea id="description" rows="3" required></textarea>
+          <div class="error" data-error-for="description"></div>
+        </div>
+        <div class="form-row">
+          <label for="ingredients">Ingredients (one per line)</label>
+          <textarea id="ingredients" rows="5" required></textarea>
+          <div class="error" data-error-for="ingredients"></div>
+        </div>
+        <div class="form-row">
+          <label for="steps">Steps (one per line)</label>
+          <textarea id="steps" rows="6" required></textarea>
+          <div class="error" data-error-for="steps"></div>
+        </div>
+        <div class="form-row cols">
+          <div>
+            <label for="prepTime">Prep Time (min)</label>
+            <input id="prepTime" type="number" min="0" required>
+            <div class="error" data-error-for="prepTime"></div>
+          </div>
+          <div>
+            <label for="cookTime">Cook Time (min)</label>
+            <input id="cookTime" type="number" min="0" required>
+            <div class="error" data-error-for="cookTime"></div>
+          </div>
+          <div>
+            <label for="difficulty">Difficulty</label>
+            <select id="difficulty" required>
+              <option value="">Select</option>
+              <option value="Easy">Easy</option>
+              <option value="Medium">Medium</option>
+              <option value="Hard">Hard</option>
+            </select>
+            <div class="error" data-error-for="difficulty"></div>
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="imageUrl">Image URL (optional)</label>
+          <input id="imageUrl" type="url" placeholder="https://...">
+          <div class="error" data-error-for="imageUrl"></div>
+        </div>
+        <div class="actions">
+          <button type="submit" id="saveBtn">Save</button>
+          <button type="button" id="cancelBtn">Cancel</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>

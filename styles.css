@@ -1,0 +1,152 @@
+.topbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 24px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 10;
+}
+.topbar h1 { margin: 0; font-size: 20px }
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  gap: 14px;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+.controls input, .controls select, .controls button {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+.controls button { background: var(--accent); border: none; color: #062e0b; font-weight: 600 }
+.controls input:focus, .controls select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.controls button:focus { outline: none }
+.controls #difficultyFilter, .controls #maxPrepInput {
+  width: 140px;
+  min-width: 120px;
+}
+/* styles.css */
+:root {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --accent: #22c55e;
+  --danger: #ef4444;
+  --border: #334155;
+}
+
+* { box-sizing: border-box }
+html, body { height: 100% }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+
+
+
+.banner {
+  margin: 10px 16px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #f59e0b22;
+  border: 1px solid #f59e0b55;
+  color: #fde68a;
+}
+
+main { padding: 24px }
+.view { max-width: 1100px; margin: 0 auto }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 12px;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.card img { width: 100%; height: 160px; object-fit: cover; background: #0b1324 }
+.card .body { padding: 12px }
+.card .title { font-weight: 600; margin-bottom: 6px }
+.card .meta { color: var(--muted); font-size: 13px }
+.card .actions { display: flex; gap: 8px; margin-top: 10px }
+.card .actions button {
+  padding: 6px 10px; border-radius: 8px; border: 1px solid var(--border); background: transparent; color: var(--text)
+}
+.card .actions button.primary { background: var(--accent); border: none; color: #062e0b; font-weight: 600 }
+
+.empty { text-align: center; color: var(--muted); padding: 20px }
+
+.link {
+  background: transparent; border: none; color: var(--text);
+  padding: 8px 0; cursor: pointer; font-size: 14px
+}
+
+#detailCard { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden }
+#detailCard .hero { width: 100%; height: 260px; object-fit: cover; background: #0b1324 }
+#detailCard .content { padding: 16px }
+#detailCard h2 { margin: 0 0 6px 0 }
+#detailCard .meta { color: var(--muted); margin-bottom: 12px }
+#detailCard .pill { display: inline-block; padding: 4px 8px; border-radius: 999px; border: 1px solid var(--border); margin-right: 6px; font-size: 12px; color: var(--muted) }
+.list { margin: 0; padding-left: 18px }
+.list li { margin-bottom: 6px }
+
+form { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px }
+.form-row { margin-bottom: 12px }
+.form-row.cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px }
+label { display: block; margin-bottom: 6px; color: var(--muted) }
+input[type="text"], input[type="number"], input[type="url"], textarea, select {
+  width: 100%; padding: 8px 10px; border-radius: 8px;
+  border: 1px solid var(--border); background: #0b1324; color: var(--text)
+}
+.error { color: var(--danger); font-size: 12px; min-height: 16px }
+.actions { display: flex; gap: 10px; margin-top: 8px }
+.actions button {
+  padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border); background: transparent; color: var(--text)
+}
+.actions #saveBtn { background: var(--accent); border: none; color: #062e0b; font-weight: 700 }
+
+@media (max-width: 720px) {
+  .topbar { padding: 16px; flex-direction: column; align-items: center }
+  .controls { flex-wrap: wrap; justify-content: center; gap: 10px; width: 100%; overflow-x: visible }
+  .controls #searchInput { flex: 1 1 100%; min-width: 0 }
+  .controls #difficultyFilter, .controls #maxPrepInput { flex: 1 1 48%; min-width: 0; width: 100%; display: block }
+  .controls #addBtn { flex: 1 1 100% }
+  .topbar h1 { text-align: center }
+  .grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px }
+  .card img { height: 120px }
+  #detailCard .hero { height: 200px }
+  .form-row.cols { grid-template-columns: 1fr }
+}
+@media (max-width: 481px) {
+  .topbar { padding: 12px }
+  .topbar h1 { font-size: 18px }
+  .controls { gap: 8px }
+  .controls #difficultyFilter, .controls #maxPrepInput { flex: 1 1 100%; width: 100%; display: block }
+  .grid { grid-template-columns: 1fr; gap: 12px }
+  .card img { height: 100px }
+  #detailCard .hero { height: 160px }
+  main { padding: 16px }
+}
