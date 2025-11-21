@@ -4,10 +4,6 @@
   - Open the project folder in VS Code (File → Open Folder)
   - Install the “Live Server” extension
   - Right‑click `index.html` → Open with Live Server
-- Local HTTP server (no extensions)
-  - Python: `python -m http.server 13000` → open `http://localhost:13000/index.html`
-  - Node: `npx http-server . -p 13000` or `npx serve`
-- Any static server works; avoid `file://` because ES modules may be blocked by the browser
   
 ## Data Structure in localStorage
 - Key: `recipes`
