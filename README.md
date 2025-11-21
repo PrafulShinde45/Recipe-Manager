@@ -5,6 +5,13 @@ A minimalist, client‑side recipe manager built with HTML, CSS, and modular Jav
 - Vercel: https://recipe-manager-omega.vercel.app/
 - GitHub Pages: https://prafulshinde45.github.io/Recipe-Manager/
 
+# Recipe Manager
+A minimalist, client‑side recipe manager built with HTML, CSS, and modular JavaScript. All data persists in browser `localStorage`.
+
+## Live Demo
+- Vercel: https://recipe-manager-omega.vercel.app/
+- GitHub Pages: https://prafulshinde45.github.io/Recipe-Manager/
+
 ## How To Run The App
 - VS Code + Live Server
   - Open the project folder in VS Code (File → Open Folder)
