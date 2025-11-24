@@ -28,6 +28,7 @@
 
   <main>
     <section id="homeView" class="view">
+     
       <div id="recipesGrid" class="grid"></div>
       <div id="emptyState" class="empty" hidden>No recipes found</div>
     </section>
@@ -64,12 +65,12 @@
         <div class="form-row cols">
           <div>
             <label for="prepTime">Prep Time (min)</label>
-            <input id="prepTime" type="number" min="0" required>
+            <input id="prepTime" type="number" min="0" max="600" step="1" required>
             <div class="error" data-error-for="prepTime"></div>
           </div>
           <div>
             <label for="cookTime">Cook Time (min)</label>
-            <input id="cookTime" type="number" min="0" required>
+            <input id="cookTime" type="number" min="0" max="600" step="1" required>
             <div class="error" data-error-for="cookTime"></div>
           </div>
           <div>

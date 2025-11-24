@@ -24,10 +24,16 @@ function renderGrid() {
   byId('emptyState').hidden = list.length !== 0;
   grid.innerHTML = list.map(r => `
     <article class="card">
-      <img src="${r.imageUrl || 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&q=80'}" alt="">
+      <div class="media">
+        <img src="${r.imageUrl || 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&q=80'}" alt="${r.title}" loading="lazy">
+        <div class="overlay"><div class="title">${r.title}</div></div>
+      </div>
       <div class="body">
-        <div class="title">${r.title}</div>
-        <div class="meta">${r.difficulty} • Prep ${r.prepTime}m • Cook ${r.cookTime}m</div>
+        <div class="chips">
+          <span class="pill difficulty-${r.difficulty.toLowerCase()}">${r.difficulty}</span>
+          <span class="pill meta">Prep ${r.prepTime}m</span>
+          <span class="pill meta">Cook ${r.cookTime}m</span>
+        </div>
         <div class="actions">
           <button class="primary" data-view="detail" data-id="${r.id}">View</button>
           <button data-view="edit" data-id="${r.id}">Edit</button>
@@ -56,7 +62,7 @@ function renderDetail(id) {
     <img class="hero" src="${r.imageUrl || 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&q=80'}" alt="">
     <div class="content">
       <h2>${r.title}</h2>
-      <div class="meta">${r.difficulty} • Prep ${r.prepTime}m • Cook ${r.cookTime}m</div>
+      <div class="meta"><span class="pill difficulty-${r.difficulty.toLowerCase()}">${r.difficulty}</span> <span class="pill meta">Prep ${r.prepTime}m</span> <span class="pill meta">Cook ${r.cookTime}m</span></div>
       <p>${r.description}</p>
       <div>
         <span class="pill">Ingredients</span>
@@ -99,6 +105,18 @@ function validate(v) {
   if (!v.steps || v.steps.length < 2) errors.steps = 'Add at least 2 steps';
   if (!Number.isFinite(v.prepTime) || v.prepTime < 0) errors.prepTime = 'Enter a valid prep time';
   if (!Number.isFinite(v.cookTime) || v.cookTime < 0) errors.cookTime = 'Enter a valid cook time';
+  if (Number.isFinite(v.prepTime)) {
+    if (!Number.isInteger(v.prepTime)) errors.prepTime = 'Use whole minutes';
+    else if (v.prepTime > 600) errors.prepTime = 'Prep must be ≤ 600 min';
+  }
+  if (Number.isFinite(v.cookTime)) {
+    if (!Number.isInteger(v.cookTime)) errors.cookTime = 'Use whole minutes';
+    else if (v.cookTime > 600) errors.cookTime = 'Cook must be ≤ 600 min';
+  }
+  if ((Number.isFinite(v.prepTime) && Number.isFinite(v.cookTime)) && (v.prepTime + v.cookTime <= 0)) {
+    errors.prepTime = errors.prepTime || 'Times must be > 0';
+    errors.cookTime = errors.cookTime || 'Times must be > 0';
+  }
   if (!['Easy', 'Medium', 'Hard'].includes(v.difficulty)) errors.difficulty = 'Select difficulty';
   if (v.imageUrl && !/^https?:\/\/.+/i.test(v.imageUrl)) errors.imageUrl = 'Enter a valid URL or leave blank';
   return errors;
